@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Audio Visualizer</title>
+		<script>
+			
+		</script>
+	</head>
+	<body>
+		<input id="audio_file1" accept="audio/*" type="file" /> <audio id="audio_player1"></audio>
+<input id="audio_file2" accept="audio/*" type="file" /> <audio id="audio_player2"></audio>
+<button id="play">play</button>
+
+<script type="text/javascript">
+var context1 = new AudioContext();
+
+var mediaSourceNode1 = context1.createMediaElementSource(document.getElementById("audio_player1"));
+mediaSourceNode1.connect(context1.destination);
+
+var mediaSourceNode2 = context1.createMediaElementSource(document.getElementById("audio_player2"));
+mediaSourceNode2.connect(context1.destination);
+
+audio_file1.onchange = function(){
+var files = this.files;
+var file = URL.createObjectURL(files[0]);
+audio_player1.src = file;
+};
+audio_file2.onchange = function(){
+var files = this.files;
+var file = URL.createObjectURL(files[0]);
+audio_player2.src = file;
+};
+
+function play(){
+var files1 = audio_file1.files;
+var file1 = URL.createObjectURL(files1[0]);
+audio_player1.src = file1;
+audio_player1.play();
+var files2 = audio_file2.files;
+var file2 = URL.createObjectURL(files2[0]);
+audio_player2.src = file2;
+audio_player2.play();
+}
+		</script>
+	</body>
+</html>
